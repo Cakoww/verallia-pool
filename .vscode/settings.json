@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/a6556e0f-f95d-4ada-b0a4-7d4140bc30f4/resourceGroups/VerallianRG/providers/Microsoft.Web/sites/api-verallia-poll",
+    "appService.deploySubpath": "."
+}
