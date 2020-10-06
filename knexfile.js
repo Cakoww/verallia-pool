@@ -14,7 +14,7 @@ module.exports = {
     connection: {
       host: 'veraliadb.mysql.database.azure.com',
       port: 3306,
-      database: 'verallia-api',
+      database: 'verallia-pool',
       user:     'veras@veraliadb',
       password: '!Cakoww2306'
     },
