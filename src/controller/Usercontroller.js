@@ -13,30 +13,38 @@ module.exports = {
         const id = crypto.randomBytes(4).toString('HEX');
         
         //verify if alreadyyyyexists a user
-        const existsUser = await connection('user')
-        .where('login', login).select('*');
-        
-  
-        if(!(Array.isArray(existsUser) && existsUser.length)){
-
-            console.log(userpassword);
+        try {
             
-            if(userpassword){
-                console.log('entroy');
-                const password = await bcrypt.hash(userpassword, 10);
-                await connection('user').insert({
-                    id,
-                    name,
-                    login,
-                    password,
-                    
-                });
+            const existsUser = await connection('user')
+            .where('login', login).select('*');
+            
+            console.log(existsUser);
+            
+            if(existsUser.length < 1){
                 
-                return res.json({ id });
+                console.log(userpassword);
+                
+                if(userpassword){
+                    console.log('entroy');
+                    const password = await bcrypt.hash(userpassword, 10);
+                    await connection('user').insert({
+                        id,
+                        name,
+                        login,
+                        password,
+                        
+                    });
+                    
+                    return res.json({ id });
+                }
+                
+            }else{
+                console.log("Usuario já existe");
+                res.status(401).send("Usuario já existe");
             }
-
-        }else{
-            res.status(401).send();
+        } catch (error) {
+            console.log(error);
+            res.status(500).send("Ocorreu um erro inesperado");
         }
     },
 

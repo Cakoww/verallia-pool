@@ -9,7 +9,7 @@ module.exports = {
     async authenticate(req, res){
         const { username, password} = req.body;
        
-        const user = await connection('user')
+        const user = await connection('USER')
         .where('login', username).select('*');
 
         if(user.length <= 0 && !(await bcrypt.compare(password, user.password))){

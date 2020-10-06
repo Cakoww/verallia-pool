@@ -16,6 +16,7 @@ routes.get('/', (req, res) => {
     });
 
 routes.post('/authenticate', authenticateController.authenticate);
+routes.post('/user', userController.create);
 
 routes.post('/party', authorize(),  partyController.create);
 routes.get('/party', authorize(),  partyController.index);
@@ -24,7 +25,6 @@ routes.get('/member', authorize(), memberController.index)
 routes.post('/member', authorize(),  memberController.create);
 routes.delete('/member/:id', authorize(),  memberController.removeById);
 
-routes.post('/user', userController.create);
 //routes.get('/user',  authorize(), userController.index);
 
 module.exports = routes;
