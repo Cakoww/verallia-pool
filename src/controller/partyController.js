@@ -33,4 +33,17 @@ module.exports = {
         return res.json(incidents);
     },
 
+
+    
+    async removeById(req, res){
+        
+        const { id } = req.params;
+
+        await connection('party')
+                .where('id', id)
+                .del();
+
+        return res.status(204).send();
+    },
+
 }
